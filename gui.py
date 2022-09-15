@@ -13,9 +13,16 @@ class Aplicacion:
 
         self.etiq1 = ttk.Label(self.raiz, text="Primer número: ", font=fuente)
         self.etiq2 = ttk.Label(self.raiz, text="Segundo número: ", font=fuente)
+        self.etiq3 = ttk.Label(self.raiz, text="Tercer número: ", font=fuente)
+        self.etiq4 = ttk.Label(self.raiz, text="Cuarto número: ", font=fuente)
+        self.etiq5 = ttk.Label(self.raiz, text="Quinto número: ", font=fuente)
 
         self.ctext1 = ttk.Entry(self.raiz, width=30)
         self.ctext2 = ttk.Entry(self.raiz, width=30)
+        self.ctext3 = ttk.Entry(self.raiz, width=30)
+        self.ctext4 = ttk.Entry(self.raiz, width=30)
+        self.ctext5 = ttk.Entry(self.raiz, width=30)
+
         self.separador = ttk.Separator(self.raiz, orient=tkinter.HORIZONTAL)
 
         self.boton1 = ttk.Button(self.raiz, text="Calcular",
@@ -34,6 +41,18 @@ class Aplicacion:
         self.etiq2.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=True,
                 padx=5, pady=5)
         self.ctext2.pack(side=tkinter.TOP, fill=tkinter.X, expand=True,
+                padx=5, pady=5)
+        self.etiq3.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=True,
+                padx=5, pady=5)
+        self.ctext3.pack(side=tkinter.TOP, fill=tkinter.X, expand=True,
+                padx=5, pady=5)
+        self.etiq4.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=True,
+                padx=5, pady=5)
+        self.ctext4.pack(side=tkinter.TOP, fill=tkinter.X, expand=True,
+                padx=5, pady=5)
+        self.etiq5.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=True,
+                padx=5, pady=5)
+        self.ctext5.pack(side=tkinter.TOP, fill=tkinter.X, expand=True,
                 padx=5, pady=5)
 
         self.separador.pack(side=tkinter.TOP, fill=tkinter.X, expand=True,
@@ -54,15 +73,25 @@ class Aplicacion:
         self.raiz.mainloop()
 
     def calcular(self, event=None):
-        n1 = int(self.ctext1.get())
-        n2 = int(self.ctext2.get())
 
-        s = Suma(n1, n2)
+        n1 = self.obtener_valor_o_cero(self.ctext1)
+        n2 = self.obtener_valor_o_cero(self.ctext2)
+        n3 = self.obtener_valor_o_cero(self.ctext3)
+        n4 = self.obtener_valor_o_cero(self.ctext4)
+        n5 = self.obtener_valor_o_cero(self.ctext5)
+
+        s = Suma(n1, n2, n3, n4, n5)
 
         texto = s.mostrar_operacion_completa()
         
         self.texto_resultado.set(texto)
         print(texto)
+
+    def obtener_valor_o_cero(self, cuadro_texto):
+        if cuadro_texto.get():
+            return int(cuadro_texto.get())
+        else:
+            return 0
 
 
 
